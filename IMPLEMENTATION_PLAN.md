@@ -1,122 +1,128 @@
 # RKRoots Implementation Plan
 
-## High-Level Plan Summary
+## Overview
 
-### App Overview
-RKRoots is a collaborative family tree mobile app enabling users to build, visualize, and share family trees with rich features including timeline events, node consolidation, cross-tree navigation, and photo album integration.
+RKRoots is a collaborative family tree mobile app enabling users to build, visualize, and share family trees with features including timeline events, same-person links across trees, cross-tree navigation, and photo album integration.
 
-### Core Features
-1. User Authentication (SSO + Email)
-2. Family Tree Creation & Visualization
-3. Node Management with Profile Data
-4. Relationship Management
-5. Access Control & Sharing
-6. Timeline Events
-7. Commenting System
-8. Node Consolidation
-9. Cross-Tree Navigation
-10. Photo Album Integration
-11. Search & Discovery
-12. Notifications
+## Technology Stack
 
-### Technology Stack
-- Backend: Node.js + Express + TypeScript + PostgreSQL + Redis
-- Mobile: React Native + Redux + React Navigation
-- Auth: Passport.js + JWT + OAuth 2.0
-- Storage: AWS S3 + CloudFront
-- Notifications: Firebase Cloud Messaging
+| Layer | Technology |
+|-------|------------|
+| Backend Runtime | Node.js 18+ |
+| Backend Framework | Express.js + TypeScript |
+| Database | PostgreSQL (raw SQL with pg/node-postgres) |
+| Database Hosting | Supabase (production), Docker (local) |
+| Authentication | JWT + Passport.js + OAuth 2.0 |
+| Logging | Pino (structured JSON) |
+| Error Tracking | Sentry |
+| Mobile Framework | React Native + Expo |
+| State Management | Redux Toolkit (auth), React Query (data) |
+| Visualization | React Native SVG + Gesture Handler |
+| Backend Hosting | Railway or Render |
 
-### Database Design
-PostgreSQL with entities: User, FamilyTree, Node, Relationship, TreeAccess, TimelineEvent, EventParticipant, Comment, ConsolidatedNode, NodeConsolidationMapping, PhotoAlbum, Notification
+## Database Schema
 
-## Low-Level Implementation Plan
+13 tables with proper constraints and indexes:
+- `users` - Authentication and profiles
+- `family_trees` - Tree metadata
+- `nodes` - Family members with draft/published status
+- `relationships` - Connections between nodes
+- `tree_access` - Permission records
+- `timeline_events` - Historical events
+- `event_participants` - Event-node associations
+- `same_person_links` - Cross-tree node links
+- `access_requests` - Access request workflow
+- `comments` - Entity comments
+- `notifications` - User notifications
+- `photo_albums` - Linked albums
+- `consolidated_nodes` / `node_consolidation_mapping` - Legacy consolidation
 
-### Phase 1: Project Setup (Week 1-2)
-- Monorepo structure with backend, mobile, shared
-- Docker Compose for PostgreSQL + Redis
-- TypeScript configuration
-- Jest testing setup
-- Database schema and migrations
-- AWS S3 configuration
-- Firebase setup
+## Implementation Phases (Completed)
 
-### Phase 2: Authentication (Week 3-4)
-- User entity and auth service
-- JWT token generation/validation
-- Google OAuth integration
-- Auth endpoints and middleware
-- Mobile auth screens and flows
-- Secure token storage
+### Phase 0: Infrastructure ✅
+- Docker Compose for local PostgreSQL
+- Pino structured logging with request tracing
+- Sentry error tracking integration
+- Environment configuration
 
-### Phase 3: Core Tree Features (Week 5-8)
-- FamilyTree CRUD operations
-- Node CRUD with validation
-- Relationship management
-- Tree visualization component
-- Node management screens
-- Image upload for profiles
+### Phase 1: Database & Types ✅
+- SQL migrations with all tables
+- TypeScript interfaces and enums
+- pg connection pool setup
+- Removed TypeORM, using raw SQL
 
-### Phase 4: Access Control (Week 9-10)
-- TreeAccess entity and service
-- Permission checking middleware
-- Invite functionality
-- Share interface on mobile
+### Phase 2: Access Control ✅
+- AccessControlService (checkAccess, requireEditAccess, requireOwnerAccess)
+- Three-tier permissions (Owner/Editor/Viewer)
+- Property tests for access enforcement
 
-### Phase 5: Timeline (Week 11-12)
-- TimelineEvent and EventParticipant entities
-- Timeline service with filtering
-- Timeline UI with chronological display
-- Event creation and management
+### Phase 3: Core Services ✅
+- AuthService (signup, login, OAuth, JWT)
+- TreeService (CRUD, owner access)
+- NodeService (CRUD, draft/publish workflow)
+- RelationshipService (CRUD, tree consistency)
 
-### Phase 6: Comments (Week 13)
-- Comment entity and service
-- Comment components for nodes/events
-- Real-time comment updates
+### Phase 4: Feature Services ✅
+- TimelineService (events, chronological ordering)
+- SamePersonLinkService (cross-tree linking)
+- AccessRequestService (request workflow)
+- CommentService (entity comments)
+- SearchService (3+ char, accessible trees only)
+- NotificationService (6 notification types)
+- AlbumService (photo album linking)
 
-### Phase 7: Node Consolidation (Week 14-16)
-- ConsolidatedNode entities
-- Duplicate detection algorithm
-- Consolidation workflow
-- Linked tree navigation
+### Phase 5: API Layer ✅
+- Express routes for all modules
+- JWT authentication middleware
+- Request validation middleware
+- Rate limiting middleware
+- Error handling middleware
 
-### Phase 8: Cross-Tree Navigation (Week 17)
-- Cross-tree access logic
-- Navigation with breadcrumbs
-- Access level indicators
+### Phase 6: Mobile App ✅
+- Authentication screens (Login, Register)
+- Tree management (List, View, Create, Share)
+- Node management (Add, Edit, Detail) with draft UI
+- Relationship management with visual lines
+- Timeline screens
+- Same person link creation
+- Access request management
+- Search with filters
+- Notifications with badge
+- Photo album linking
 
-### Phase 9: Photo Albums (Week 18)
-- Google Drive/Photos integration
-- OAuth token management
-- Background photo display
+### Phase 7: Testing ✅
+- Unit tests for all services
+- Property-based tests for invariants
+- Integration tests for API endpoints
 
-### Phase 10: Notifications (Week 19)
-- Notification entity and service
-- FCM integration
-- Push notification handling
+### Phase 8: Deployment ✅
+- Railway/Render backend configuration
+- Supabase database setup
+- EAS Build for mobile
+- GitHub Actions CI/CD
 
-### Phase 11: Search (Week 20)
-- Search service with filters
-- Search UI with results
+## Key Design Decisions
 
-### Phase 12: Optimization (Week 21)
-- Caching with Redis
-- Query optimization
-- Image optimization
-- Bundle size reduction
+1. **Raw SQL over ORM**: Better performance, explicit queries, no magic
+2. **Draft/Publish Workflow**: Nodes start private, publish when ready
+3. **Same Person Links**: Simpler than full consolidation, connects trees
+4. **Access Requests**: Discovery-based access to linked trees
+5. **Minimum Search Length**: 3 chars prevents expensive broad queries
+6. **Property-Based Testing**: Validates invariants across all inputs
 
-### Phase 13: Testing (Week 22-23)
-- Unit tests (80%+ coverage)
-- Integration tests
-- E2E tests
-- Load testing
+## Correctness Properties
 
-### Phase 14: Deployment (Week 24)
-- AWS ECS/EKS setup
-- CI/CD pipelines
-- Monitoring and logging
-
-### Phase 15: Launch (Week 25)
-- Documentation
-- Beta testing
-- App store submission
-- Full launch
+21 properties defined and tested:
+- Node name validation
+- Access control enforcement (view/edit)
+- Owner access immutability
+- Relationship tree consistency
+- Display name logic
+- Same person link requirements
+- Search scope restriction
+- Timeline ordering
+- Comment/event ownership
+- Notification creation
+- Tree deletion cascade
+- Draft node visibility
+- Publish requirements

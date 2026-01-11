@@ -92,12 +92,6 @@ LOG_LEVEL=info
 
 # Database (from Supabase)
 DATABASE_URL=postgresql://postgres:[PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres
-DB_HOST=db.[PROJECT-REF].supabase.co
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=[your-password]
-DB_NAME=postgres
-DB_POOL_MAX=10
 
 # JWT (generate with: openssl rand -base64 64)
 JWT_SECRET=[generate-strong-secret]
@@ -105,7 +99,7 @@ JWT_EXPIRES_IN=1h
 JWT_REFRESH_SECRET=[generate-strong-secret]
 JWT_REFRESH_EXPIRES_IN=7d
 
-# Sentry (optional)
+# Sentry (optional - free tier)
 SENTRY_DSN=[your-sentry-dsn]
 
 # OAuth (configure in respective developer consoles)
@@ -113,6 +107,8 @@ GOOGLE_CLIENT_ID=[your-google-client-id]
 GOOGLE_CLIENT_SECRET=[your-google-client-secret]
 GOOGLE_CALLBACK_URL=https://[your-railway-domain]/api/v1/auth/google/callback
 ```
+
+Note: Redis is not required for initial deployment. The app uses in-memory caching.
 
 ### Auto-Deploy from GitHub
 

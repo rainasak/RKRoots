@@ -6,69 +6,72 @@
 - Open the RKRoots app
 - Tap "Sign Up"
 - Enter email, password, and display name
+- Password requirements: 8+ characters, uppercase, lowercase, number, special character
 - Or use "Sign in with Google"
 
 ### 2. Create Your First Family Tree
-- Tap the "+" button
+- Tap the "+" button on the tree list
 - Enter tree name (e.g., "Smith Family")
 - Add optional description
 - Tap "Create"
+- You become the Owner with full control
 
 ### 3. Add Family Members
 - Open your tree
-- Tap "Add Member"
+- Tap "+ Add Member"
 - Enter required information:
-  - First Name + Last Name OR Pet Name
-  - Optional: Address, Place of Birth, Contact Info
-- Upload a profile picture
+  - First Name + Last Name OR Pet Name (nickname)
+  - Optional: Address, Place of Birth, Date of Birth/Death
 - Tap "Save"
+- New members start as "Draft" (only visible to you)
 
 ## Features
 
-### Family Tree Management
+### Draft & Publish Workflow
 
-#### Creating Nodes
-- Each person is a "node" in the tree
-- Must provide either:
-  - First Name AND Last Name
-  - OR Pet Name (nickname)
-- Display name shows Pet Name if available
+#### Understanding Drafts
+- New family members are created as drafts
+- Drafts show a "DRAFT" badge and dashed border
+- Only you can see your draft members
+- This lets you prepare entries before sharing
 
-#### Adding Relationships
-- Tap on a person
-- Select "Add Relationship"
+#### Publishing Members
+- To publish, add a relationship to an existing published member
+- Or for the first person in a tree, use the context menu
+- Long-press on a draft member → tap "Publish"
+- Published members become visible to everyone with tree access
+
+### Adding Relationships
+
+#### Creating Connections
+- Tap "🔗 Add Relationship" button
+- Select two family members
 - Choose relationship type:
-  - Parent-Child
-  - Spouse
-  - Sibling
-  - Adopted
-  - Step-family
-- Select or create the related person
+  - **Parent-Child**: solid blue line
+  - **Spouse**: dashed pink line
+  - **Sibling**: solid purple line
+  - **Adopted**: dotted orange line
+  - **Step**: dash-dot gray line
+- If one member is a draft, you'll be prompted to publish them
 
 ### Timeline Events
 
-#### Creating Events
-- Go to Timeline tab
-- Tap "+" button
+#### Recording History
+- Tap "📅 Timeline" button
+- Tap "+" to create an event
 - Select event type:
-  - Birth
-  - Marriage
-  - Death
-  - Milestone
-  - Achievement
-  - Memory
-- Add details: date, description, location
-- Select participants
-- Tap "Save"
+  - Birth, Marriage, Death
+  - Milestone, Achievement, Memory
+- Add title, date, description, location
+- Events display chronologically
 
 ### Sharing Trees
 
-#### Inviting Others
-- Open tree settings
-- Tap "Share"
-- Enter email address
+#### Inviting Others (Owner Only)
+- Tap "👥 Share Tree" button
+- Enter user's email
 - Choose access level:
-  - **Owner**: Full control
+  - **Owner**: Full control (use carefully)
   - **Editor**: Can add/edit content
   - **Viewer**: Read-only access
 - Send invitation
@@ -76,93 +79,98 @@
 #### Managing Access
 - View all users with access
 - Change access levels
-- Revoke access (Owner only)
+- Revoke access (except Owner)
 
-### Node Consolidation
+### Same Person Links
 
-#### Linking Duplicate Nodes
-- When the same person appears in multiple trees
-- Tap on person → "Find Duplicates"
-- Review potential matches
-- Send consolidation request
-- Other tree owner approves
-- Nodes are now linked
+#### Connecting Trees
+When the same person appears in multiple family trees:
+- Open the person's detail screen
+- Tap "👥 Link Same Person" in the menu
+- Search for the person in another tree
+- Create the link
+- Both tree owners are notified
 
 #### Cross-Tree Navigation
-- Consolidated nodes show "Also in [Tree Name]"
-- Tap to navigate to other tree
-- Automatic view access granted
-- Edit access if you have permissions
+- Linked nodes show "Also appears in another tree"
+- If you have access: tap to navigate directly
+- If no access: tap "Request Access"
+- Tree owner approves/denies your request
 
 ### Search
 
 #### Finding Family Members
-- Use search bar at top
-- Search by name or location
-- Filter results
-- Search across all accessible trees
-- Or search within specific tree
+- Use the search screen
+- Enter at least 3 characters
+- Search by first name, last name, or pet name
+- Results show which tree each person belongs to
+- Only published members appear in results
 
 ### Comments
 
 #### Collaborating
-- Tap on any person or event
+- Open any person or event
 - Scroll to comments section
 - Add your comment
 - Edit or delete your own comments
-- Get notified of new comments
+- Others with tree access can see and reply
 
 ### Photo Albums
 
 #### Linking Albums
-- Tree settings → "Photo Albums"
+- Tap "🖼️ Photo Albums" button
 - Connect Google Drive or Google Photos
-- Select album
-- Photos display as background
+- Select album to link
+- Albums display in the tree view
+
+### Notifications
+
+#### Staying Updated
+- Tap the bell icon to see notifications
+- You're notified when:
+  - Someone grants you tree access
+  - Trees are linked via same person
+  - Someone requests access to your tree
+  - Comments are added
+  - Members are published
+  - Timeline events are created
+- Tap to mark as read
 
 ## Tips & Tricks
 
 ### Display Names
-- Pet names take priority over first/last names
-- Use pet names for nicknames or preferred names
-- Example: "Johnny" instead of "John Smith"
+- Pet names (nicknames) take priority over first/last names
+- Use pet names for preferred names
+- Example: "Johnny" displays instead of "John Smith"
 
-### Organizing Large Trees
-- Use search to find specific people
-- Filter by generation or relationship
-- Add detailed descriptions to events
-- Use timeline to track family history
+### Tree Navigation
+- Pinch to zoom in/out
+- Drag to pan around
+- Double-tap to reset view
+- Long-press on a member for quick actions
 
 ### Privacy
 - Only invited users can see your tree
+- Draft members are private until published
 - Control who can edit vs. view
 - Revoke access anytime
-- Your data is encrypted
-
-### Best Practices
-1. Add photos to make trees more engaging
-2. Record events as they happen
-3. Invite family members to collaborate
-4. Use comments to share stories
-5. Link duplicate nodes to connect trees
-6. Back up important information
 
 ## Troubleshooting
 
 ### Can't Add Person
-- Ensure you provide required name fields
+- Ensure you provide either (First + Last name) OR Pet name
 - Check your access level (need Editor or Owner)
+
+### Can't Publish
+- First person in tree: use context menu to publish
+- Other members: must have relationship to published member
 
 ### Can't See Tree
 - Verify you've been invited
-- Check your email for invitation
+- Check notifications for invitation
 - Contact tree owner
 
-### Consolidation Request Pending
-- Wait for other tree owner to approve
-- They'll receive a notification
-
-## Support
-- Email: support@rkroots.com
-- In-app: Settings → Help & Support
-- FAQ: https://rkroots.com/faq
+### Access Request Pending
+- Wait for tree owner to approve
+- They receive a notification
+- Check your notifications for response
