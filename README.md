@@ -177,27 +177,22 @@ npm run test:watch    # Watch mode
 
 **Status**: ✅ Production Ready - All 28 implementation tasks complete
 
-### Architecture Highlights
-- Raw SQL with pg (node-postgres) - no ORM overhead
-- Centralized AccessControlService for permission checks
-- Structured logging with Pino + Sentry error tracking
-- Property-based testing with fast-check for core invariants
-- Draft/publish workflow for nodes
-
 ### Key Design Decisions
 - **No ORM**: Raw SQL for performance and explicit control
+- **Centralized Access Control**: All permission checks go through `AccessControlService`
 - **Draft Nodes**: New nodes start as drafts, visible only to creator until published
-- **Same Person Links**: Replaced "node consolidation" with simpler cross-tree linking
+- **Same Person Links**: Simpler cross-tree linking (replaced complex node consolidation)
 - **Access Requests**: Users can request access to linked trees they discover
 - **Minimum Search Length**: 3 characters to prevent expensive broad queries
 
 ## Documentation
 
-- [Implementation Plan](./IMPLEMENTATION_PLAN.md) - 25-week development roadmap
-- [Features List](./FEATURES.md) - Complete feature specifications
-- [Deployment Guide](./DEPLOYMENT_GUIDE.md) - Infrastructure and deployment
-- [Testing Guide](./TESTING_GUIDE.md) - Test procedures and coverage
+- [Developer Guide](./DEVELOPER_GUIDE.md) - Service architecture, reusable code, patterns
+- [Features List](./FEATURES.md) - Detailed feature specifications
+- [Implementation Plan](./IMPLEMENTATION_PLAN.md) - Architecture, tech stack, phases
+- [Testing Guide](./TESTING_GUIDE.md) - Test structure, property tests, coverage
 - [User Guide](./USER_GUIDE.md) - End-user documentation
+- [Deployment Guide](./DEPLOYMENT_GUIDE.md) - Production deployment
 
 ## License
 
